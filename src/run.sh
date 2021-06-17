@@ -7,24 +7,21 @@
 
 module load gcc/7.2.0
 
-cd $PBS_O_WORKDIR
+cd "$PBS_O_WORKDIR" || exit
 
 make
 
-echo "Stencil threads: 16"
-export OMP_NUM_THREADS=16
-./stencil2D
+export OMP_PROC_BIND=true
 
-echo "Stencil threads: 32"
-export OMP_NUM_THREADS=32
-./stencil2D
+for it in 1 2 3 4 5; do
+    for n in 16 32; do
+        export OMP_NUM_THREADS="$n"
+        echo "Stencil threads: $n"
+        ./stencil2D
 
-echo "Asp threads: 16"
-export OMP_NUM_THREADS=16
-./asp
-
-echo "Asp threads: 32"
-export OMP_NUM_THREADS=32
-./asp
+        echo "ASP threads: $n"
+        ./asp
+    done
+done
 
 make clean

@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include <omp.h>
 
 #define I(i, j) ((N) * (i) + (j))
 
@@ -64,10 +65,10 @@ void test(const char* func_name, void f(double*, double*)) {
         }
     }
 
-    clock_t start = clock();
+    double time = omp_get_wtime();
     f(G1, G2);
-    clock_t end = clock();
-    printf("%s: %fs\n", func_name, ((double) end - start) / CLOCKS_PER_SEC);
+    printf("%s: %fs\n", func_name, omp_get_wtime()-time);
+
 
     free(G1);
     free(G2);
