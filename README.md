@@ -2,7 +2,7 @@
 
 Performance analyzis, Optimization and Paralelization of Stencil2D and All-Pairs Shortest Path using OpenMP (Parallel Algorithms assignment @ UMinho)
 
-Al the performance analysis where performed on the [SeARCH cluster @ UMinho](https://www4.di.uminho.pt/search/pt/)
+All the performance analysis where performed on the [SeARCH cluster @ UMinho](https://www4.di.uminho.pt/search/pt/)
 
 ## Authors
 
